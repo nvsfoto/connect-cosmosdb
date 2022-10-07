@@ -51,7 +51,7 @@ describe('Events', () => {
         done()
       })
       collection.insertOne(
-        { _id: 'foo3', session: { foo: 'bar1' }, expires: futureDate },
+        { _id: 'foo3', session: { foo: 'bar1' }, _ts: futureDate },
         err => {
           expect(err).toBeFalsy()
           store.set('foo3', { foo: 'bar2' }, noop)
@@ -64,7 +64,7 @@ describe('Events', () => {
         done()
       })
       collection.insertOne(
-        { _id: 'foo4', session: { foo: 'bar1' }, expires: futureDate },
+        { _id: 'foo4', session: { foo: 'bar1' }, _ts: futureDate },
         err => {
           expect(err).toBeFalsy()
           store.set('foo4', { foo: 'bar2' }, noop)
@@ -116,7 +116,7 @@ describe('Events w/ Crypto', () => {
         done()
       })
       collection.insertOne(
-        { _id: 'foo3', session: { foo: 'bar1' }, expires: futureDate },
+        { _id: 'foo3', session: { foo: 'bar1' }, _ts: futureDate },
         err => {
           expect(err).toBeFalsy()
           store.set('foo3', { foo: 'bar2' }, noop)
@@ -129,7 +129,7 @@ describe('Events w/ Crypto', () => {
         done()
       })
       collection.insertOne(
-        { _id: 'foo4', session: { foo: 'bar1' }, expires: futureDate },
+        { _id: 'foo4', session: { foo: 'bar1' }, _ts: futureDate },
         err => {
           expect(err).toBeFalsy()
           store.set('foo4', { foo: 'bar2' }, noop)

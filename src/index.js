@@ -156,12 +156,12 @@ module.exports = function(connect) {
 
     setAutoRemoveAsync() {
       const removeQuery = () => {
-        return { expires: { $lt: new Date() } }
+        return { _ts: { $lt: new Date() } }
       }
       switch (this.autoRemove) {
         case 'native':
           return this.collection.createIndex(
-            { expires: 1 },
+            { _ts: 1 },
             Object.assign({ expireAfterSeconds: 0 }, this.writeOperationOptions)
           )
         case 'interval':
@@ -236,8 +236,8 @@ module.exports = function(connect) {
             collection.findOne({
               _id: this.computeStorageId(sid),
               $or: [
-                { expires: { $exists: false } },
-                { expires: { $gt: new Date() } },
+                { _ts: { $exists: false } },
+                { _ts: { $gt: new Date() } },
               ],
             })
           )
@@ -379,8 +379,8 @@ module.exports = function(connect) {
           .then(collection =>
             collection.find({
               $or: [
-                { expires: { $exists: false } },
-                { expires: { $gt: new Date() } },
+                { _ts: { $exists: false } },
+                { _ts: { $gt: new Date() } },
               ],
             })
           )
